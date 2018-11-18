@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,16 +8,34 @@
     <link rel="stylesheet" href="bundle.css">
     <title>STORY TELLER</title>
 </head>
-<body>
-    <div class="wrapper">
+
+<body class="parallax">
+    <div class="wrapper parallax">
+        <div class="home">
+            <p>
+                What is Lorem Ipsum?
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and
+                scrambled it to make a type specimen book. It was popularised in the 1960s with the
+                release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing
+                software like Aldus PageMaker including versions of Lorem Ipsum.
+            </p>
+        </div>
         <header class="header">
-            <div class="left">LOGO</div>
+            <div class="left">
+                <a href="/"><img src="./assets/images/logo.png" alt="LOGO" width="100%" height="60px"></a>
+            </div>
             <div class="middle">SENTENCE</div>
             <div class="right">PROFILE</div>
         </header>
         <main class="main">
             <aside class="aside aside-left">ASIDE - left</aside>
-            <div class="content">CONTENT</div>
+            <div class="content">
+                <header class="content-header">
+                    <h1>Welcome!</h1>
+                </header>
+                <main id="content-wrapper" class="content-main">CONTENT</main>
+            </div>
             <aside class="aside aside-right">ASIDE - right</aside>
         </main>
         <footer class="footer">
@@ -27,4 +46,5 @@
     </div>
     <script src="bundle.js"></script>
 </body>
+
 </html>

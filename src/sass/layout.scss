@@ -1,66 +1,134 @@
 @import '../../node_modules/normalize.scss/normalize.scss';
 @import '../assets/sass-mixin/flexbox';
 @import './colors.scss';
+@import './fonts.scss';
+
+// skroller css
+::-webkit-scrollbar {
+    width: 12px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+}
+
+// skroller css END
+
+@mixin background($imgpath, $position:0 0, $repeat: no-repeat) {
+    background: {
+        image: url($imgpath);
+        position: $position;
+        repeat: $repeat;
+    }
+}
+
+.parallax {
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+html,
+body,
+.parallax {
+    height: 100%;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    @include background('./assets/images/bg.png');
+}
 
 body .wrapper {
     color: $white-color;
 
-    header,
-    main,
-    footer {
-        @include flexBox;
-        @include flexDirection(column);
-    }
+    .home {
+        height: -webkit-calc(100% - 80px);
+        height: -moz-calc(100% - 80px);
+        height: calc(100% - 80px);
+        padding: 20px 10% 10px 10%;
+        color: $home-color;
 
-    main {
-        min-height: 480px;
-    }
-
-    header,
-    footer {
-        min-height: 60px;
-
-        .left,
-        .right {
-            @include flex(1);
-        }
-
-        .middle {
-            @include flex(3);
+        p {
+            text-align: justify;
+            font-size: 1.1em;
+            text-shadow: -1px 1px black;
+            font-family: 'BEBAS', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
     }
+}
 
-    header .left,
-    footer .right,
-    main .content {
-        background-color: $grey-color;
+header,
+main,
+footer {
+    @include flexBox;
+    @include flexDirection(column);
+}
+
+header,
+footer {
+    min-height: 60px;
+
+    .left,
+    .right {
+        @include flex(1);
     }
-    
-    header .right,
-    footer .middle,
-    main .aside-left {
-        background-color: $black-color;
+
+    .middle {
+        @include flex(3);
+    }
+}
+
+header .left,
+footer .right,
+main .content {
+    background-color: $grey-color;
+}
+
+header .right,
+footer .middle,
+main .aside-left {
+    background-color: $black-color;
+}
+
+header .middle,
+footer .left,
+main .aside-right {
+    background-color: $light-black-color;
+}
+
+main {
+    min-height: 480px;
+
+    .aside {
+        @include flex(1);
     }
 
-    header .middle, 
-    footer .left,
-    main .aside-right {
-        background-color: $light-black-color;
-    }
+    .content {
+        @include flex(3);
 
-    main {
-        .aside {
-            @include flex(1);
-        }
-
-        .content {
-            @include flex(3);
+        .content-header {
+            @include background('./assets/images/bg-main-header.jpg');
+            background-size: 100% auto;
+            min-height: 260px;
         }
     }
 }
 
 @media all and (min-width: 978px) {
     body .wrapper {
+        .home {
+            padding: 90px 23% 10px 23%;
+        }
+
         header,
         main,
         footer {
