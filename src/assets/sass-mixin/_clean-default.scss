@@ -1,0 +1,16 @@
+@mixin cleanDefault {
+    margin: 0;
+    padding: 0;
+    
+    .link,
+    a,
+    select,
+    button {
+        outline: none;
+        text-decoration: none;
+    }
+    
+    ul {
+        list-style-type: none;
+    }
+}

@@ -1,0 +1,62 @@
+
+@mixin fadeOut($timeSec) {
+    -webkit-animation: fadeout $timeSec;
+    -moz-animation: fadeout $timeSec;
+    -ms-animation: fadeout $timeSec;
+    -o-animation: fadeout $timeSec;
+    animation: fadeout $timeSec;
+
+    @keyframes fadeout {
+        from {
+            opacity: 1;
+        }
+
+        to {
+            opacity: 0;
+        }
+    }
+
+    /* Firefox < 16 */
+    @-moz-keyframes fadeout {
+        from {
+            opacity: 1;
+        }
+
+        to {
+            opacity: 0;
+        }
+    }
+
+    /* Safari, Chrome and Opera > 12.1 */
+    @-webkit-keyframes fadeout {
+        from {
+            opacity: 1;
+        }
+
+        to {
+            opacity: 0;
+        }
+    }
+
+    /* Internet Explorer */
+    @-ms-keyframes fadeout{
+        from {
+            opacity: 1;
+        }
+
+        to {
+            opacity: 0;
+        }
+    }
+
+    /* Opera < 12.1 */
+    @-o-keyframes fadeout {
+        from {
+            opacity: 1;
+        }
+
+        to {
+            opacity: 0;
+        }
+    }
+}

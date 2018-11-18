@@ -1,0 +1,33 @@
+{
+  "name": "story-teller",
+  "version": "1.0.0",
+  "description": "ui",
+  "main": "index.js",
+  "scripts": {
+    "js": "browserify src/services/main.js -o src/bundle.js",
+    "sass": "gulp sass:watch",
+    "start": "live-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AtanasRaykovPapucharov/story-teller.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/AtanasRaykovPapucharov/story-teller/issues"
+  },
+  "homepage": "https://github.com/AtanasRaykovPapucharov/story-teller#readme",
+  "dependencies": {
+    "handlebars": "^4.0.12",
+    "jquery": "^3.3.1",
+    "navigo": "^7.1.2"
+  },
+  "devDependencies": {
+    "browserify": "^16.2.3",
+    "fs-extra": "^7.0.1",
+    "gulp": "^3.9.1",
+    "gulp-sass": "^4.0.2"
+  }
+}
