@@ -1,0 +1,70 @@
+@import '../../node_modules/normalize.scss/normalize.scss';
+@import '../assets/sass-mixin/flexbox';
+@import './colors.scss';
+
+body .wrapper {
+    color: $white-color;
+
+    header,
+    main,
+    footer {
+        @include flexBox;
+        @include flexDirection(column);
+    }
+
+    main {
+        min-height: 480px;
+    }
+
+    header,
+    footer {
+        min-height: 60px;
+
+        .left,
+        .right {
+            @include flex(1);
+        }
+
+        .middle {
+            @include flex(3);
+        }
+    }
+
+    header .left,
+    footer .right,
+    main .content {
+        background-color: $grey-color;
+    }
+    
+    header .right,
+    footer .middle,
+    main .aside-left {
+        background-color: $black-color;
+    }
+
+    header .middle, 
+    footer .left,
+    main .aside-right {
+        background-color: $light-black-color;
+    }
+
+    main {
+        .aside {
+            @include flex(1);
+        }
+
+        .content {
+            @include flex(3);
+        }
+    }
+}
+
+@media all and (min-width: 978px) {
+    body .wrapper {
+        header,
+        main,
+        footer {
+            @include flexDirection(row);
+        }
+    }
+}

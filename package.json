@@ -22,7 +22,8 @@
   "dependencies": {
     "handlebars": "^4.0.12",
     "jquery": "^3.3.1",
-    "navigo": "^7.1.2"
+    "navigo": "^7.1.2",
+    "normalize.scss": "^0.1.0"
   },
   "devDependencies": {
     "browserify": "^16.2.3",

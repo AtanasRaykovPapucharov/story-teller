@@ -5,9 +5,10 @@ const controller = $ => {
 
     return {
         renderHome: () => {
-            data.allStories().then(res => {
-                console.log(res)
-            })
+            data.allStories()
+                .then(stories => {
+                    console.log(stories)
+                })
         }
     }
 }
