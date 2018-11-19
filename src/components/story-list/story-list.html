@@ -1,0 +1,13 @@
+<div class="all-stories">
+    {{#each data}}
+    <article class="story-art">
+        <img src={{this.image}} alt="IMG" width="30%" height="160px">
+        <div>
+            <a href="#/story/{{this._id}}">
+                <h1>{{this.title}}</h1>
+            </a>
+            <h2>{{this.subtitle}}</h2>
+        </div>
+    </article>
+    {{/each}}
+</div>

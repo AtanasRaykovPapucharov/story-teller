@@ -6,7 +6,7 @@
   "scripts": {
     "js": "browserify src/services/main.js -o src/bundle.js",
     "sass": "gulp sass:watch",
-    "start": "live-server"
+    "start": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -22,6 +22,9 @@
   "dependencies": {
     "handlebars": "^4.0.12",
     "jquery": "^3.3.1",
+    "koa": "^2.6.2",
+    "koa-cors": "0.0.16",
+    "koa-static": "^5.0.0",
     "navigo": "^7.1.2",
     "normalize.scss": "^0.1.0"
   },
@@ -29,6 +32,7 @@
     "browserify": "^16.2.3",
     "fs-extra": "^7.0.1",
     "gulp": "^3.9.1",
-    "gulp-sass": "^4.0.2"
+    "gulp-sass": "^4.0.2",
+    "nodemon": "^1.18.6"
   }
 }

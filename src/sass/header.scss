@@ -1,0 +1,56 @@
+
+@import './common/colors.scss';
+@import '../assets/sass-mixin/flexbox';
+
+header.header {
+    .left {
+        padding-top: 5px;
+    }
+}
+
+header.header .right a img {}
+
+header.header .right:hover {
+    a img {
+        border-bottom: 2px solid $white-color;
+    }
+}
+
+header.header .middle nav ul {
+    @include flexBox;
+
+    li {
+        @include flex(1);
+        text-align: center;
+        height: 50px;
+        margin-left: -50px;
+
+        a h4 {
+            margin-top: -2px;
+            color: $white-color;
+        }
+    }
+
+    li:hover {
+        a img {
+            transform: rotate(355deg);
+        }
+    }
+}
+
+header.header .left{
+    background-color: $white-color;
+}
+
+header.header .right,
+header.header .middle {
+    visibility: hidden;
+}
+
+@media all and (min-width: 978px) {
+
+    header.header .right,
+    header.header .middle {
+        visibility: visible;
+    }
+}

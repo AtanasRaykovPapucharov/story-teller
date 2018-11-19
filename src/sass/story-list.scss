@@ -1,0 +1,22 @@
+@import '../assets/sass-mixin/flexbox';
+@import './common/colors.scss';
+
+.all-stories {
+    padding: 3px;
+
+    .story-art {
+        @include flexBox;
+        padding: 3px;
+
+        img {
+            @include flex(1);
+        }
+
+        div {
+            @include flex(2);
+            color: $black-color;
+            text-align: center;
+            background-color: $white-color;
+        }
+    }
+}

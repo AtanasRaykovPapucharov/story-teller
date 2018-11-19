@@ -1,15 +1,15 @@
-const storiesAPI = 'https://storytellerapi.herokuapp.com/api/story/'
-const stories = require('./data-requester')(storiesAPI)
+const url = 'https://storytellerapi.herokuapp.com/api/story/'
 
-const data = {
-    allStories: () => {
-        return stories.getAll().then(stories => stories.json())
-    },
-    storyById: (id) => {
-        return stories.getById(id)
-            .then(story => {
-                return story.json()
-            })
+const data = $ => {
+    const stories = require('./data-requester')($)
+
+    return {
+        allStories: () => {
+            return stories.get(url)
+        },
+        storyById: (id) => {
+            return stories.get(url + id)
+        }
     }
 }
 

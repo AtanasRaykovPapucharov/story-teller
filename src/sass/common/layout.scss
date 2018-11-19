@@ -1,5 +1,6 @@
-@import '../../node_modules/normalize.scss/normalize.scss';
-@import '../assets/sass-mixin/flexbox';
+@import '../../../node_modules/normalize.scss/normalize.scss';
+@import '../../assets/sass-mixin/flexbox';
+@import '../../assets/sass-mixin/clean-default';
 @import './colors.scss';
 @import './fonts.scss';
 
@@ -44,6 +45,7 @@ body,
 body {
     margin: 0;
     padding: 0;
+    @include cleanDefault;
     @include background('./assets/images/bg.png');
 }
 
@@ -60,7 +62,7 @@ body .wrapper {
         p {
             text-align: justify;
             font-size: 1.1em;
-            text-shadow: -1px 1px black;
+            //text-shadow: -1px 1px $white-color;
             font-family: 'BEBAS', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
     }
@@ -75,6 +77,7 @@ footer {
 
 header,
 footer {
+    z-index: 333;
     min-height: 60px;
 
     .left,
@@ -87,7 +90,6 @@ footer {
     }
 }
 
-header .left,
 footer .right,
 main .content {
     background-color: $grey-color;

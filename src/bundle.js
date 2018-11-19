@@ -18202,111 +18202,176 @@ exports.SourceMapConsumer = require('./lib/source-map-consumer').SourceMapConsum
 exports.SourceNode = require('./lib/source-node').SourceNode;
 
 },{"./lib/source-map-consumer":40,"./lib/source-map-generator":41,"./lib/source-node":42}],45:[function(require,module,exports){
-const TYPE_JSON = 'application/json'
-
-const requester = url => {
+module.exports = $ => {
+    function _sendRequest(method, url, headers, data) {
+        const JSON = 'application/json'
+        headers = headers || {}
+        data = data || {}
+        const contentType = headers.contentType || JSON
+        return new Promise((resolve, reject) => {
+            $.ajax({
+                url,
+                method,
+                contentType,
+                data,
+                headers,
+                success: (response) => {
+                    resolve(response)
+                },
+                error: (err) => {
+                    reject(err)
+                }
+            })
+        })
+    }
     return {
-        getAll: () => {
-            return fetch(url)
+        get: (url, headers) => {
+            return _sendRequest('GET', url, headers)
         },
-        getById: (id) => {
-            return fetch(`${url}/:${id}`)
+        post: (url, headers, data) => {
+            return _sendRequest('POST', url, headers, data)
         },
-        post: (obj) => {
-            return fetch(url, {
-                method: 'POST',
-                body: JSON.stringify(obj),
-                headers: {
-                    'Content-Type': TYPE_JSON
-                }
-            })
+        put: (url, headers, data) => {
+            return _sendRequest('PUT', url, headers, data)
         },
-        delete: (id) => {
-            return fetch(`${url}/:${id}`, {
-                method: 'DELETE',
-                headers: {
-                    'Content-Type': TYPE_JSON
-                }
-            })
-        },
-        update: (id, updateObj) => {
-            return fetch(`${url}/:${id}`, {
-                method: 'PUT',
-                body: JSON.stringify({
-                    updateObj
-                }),
-                headers: {
-                    'Content-Type': TYPE_JSON
-                }
-            })
+        delete: (url, headers, data) => {
+            return _sendRequest('DELETE', url, headers, data)
         }
     }
 }
-
-module.exports = requester
-
 },{}],46:[function(require,module,exports){
-const storiesAPI = 'https://storytellerapi.herokuapp.com/api/story/'
-const stories = require('./data-requester')(storiesAPI)
+const url = 'https://storytellerapi.herokuapp.com/api/story/'
 
-const data = {
-    allStories: () => {
-        return stories.getAll().then(stories => stories.json())
-    },
-    storyById: (id) => {
-        return stories.getById(id)
-            .then(story => {
-                return story.json()
-            })
+const data = $ => {
+    const stories = require('./data-requester')($)
+
+    return {
+        allStories: () => {
+            return stories.get(url)
+        },
+        storyById: (id) => {
+            return stories.get(url + id)
+        }
     }
 }
 
 module.exports = data
 },{"./data-requester":45}],47:[function(require,module,exports){
-require('./router')
-},{"./router":49}],48:[function(require,module,exports){
-const data = require('./data')
+const $ = require('jquery')
 
+require('./router')($)
+
+$(() => { // HEADER Scroll
+    const header$ = $('body .wrapper header.header')
+    const windowHeight = $(window).height()
+    $(window).on('scroll', function () {
+        let elem = header$
+        let state = $(this).scrollTop()
+
+        if (state - 20 > windowHeight) {
+            elem.css({
+                'position': 'fixed',
+                'top': '0',
+                'width': '100%'
+            })
+        } else {
+            elem.css({
+                'position': 'inherit'
+            })
+        }
+    })
+})
+
+$(() => { // CIRCLE
+    let angle = 0
+
+    $("#parent .child").on('click', e => {
+        angle += 30
+
+        $("#parent").css({
+            transform: 'rotate(' + angle + 'deg)'
+        })
+        $("#parent .child").css({
+            transform: 'rotate(-' + angle + 'deg)'
+        })
+    })
+})
+},{"./router":49,"jquery":32}],48:[function(require,module,exports){
 const controller = $ => {
+    const data = require('./data')($)
     const view = require('./view')($)
 
     return {
         renderHome: () => {
+            return view.load('home', '#content-wrapper')
+        },
+        renderStories: () => {
             data.allStories()
                 .then(stories => {
-                    console.log(stories)
+                    return view.load('story-list', '#content-wrapper', {data: stories})
                 })
+        },
+        renderStory: id => {
+            data.storyById(id)
+                .then(story => {
+                    return view.load('story', '#content-wrapper', {data: story})
+                })
+                .catch(e => {
+                    console.log(e)
+                    
+                })
+        },
+        renderVideos: () => {
+            return view.load('video', '#content-wrapper')
+        },
+        renderChat: () => {
+            return view.load('chat', '#content-wrapper')
         }
     }
 }
 
 module.exports = controller
 },{"./data":46,"./view":51}],49:[function(require,module,exports){
-const $ = require('jquery')
-const controller = require('./router-controller')($)
-
 const Navigo = require('navigo')
 const router = new Navigo(null, true)
 
-router
-    .on({
-        '/home': () => {
-            return controller.renderHome()
-        },
-        '/': () => {
-            router.navigate('/home')
-        },
-        '*': () => {
-            router.navigate('/home')
-        }
-    })
-    .notFound(() => {
-        alert('Error! Router not found!')
-    })
-    .resolve()
+const routes = $ => {
+    const controller = require('./router-controller')($)
 
-module.exports = router
-},{"./router-controller":48,"jquery":32,"navigo":33}],50:[function(require,module,exports){
+    router
+        .on({
+            '/home': () => {
+                return controller.renderHome()
+            },
+            '/stories': () => {
+                return controller.renderStories()
+            },
+            '/story/:id': (params) => {
+                return controller.renderStory(params.id)
+                
+            },
+            '/videos': () => {
+                return controller.renderVideos()
+            },
+            '/chat': () => {
+                return controller.renderChat()
+            },
+            '/': () => {
+                router.navigate('/home')
+            },
+            '*': () => {
+                router.navigate('/home')
+            }
+        })
+        .notFound(() => {
+            alert('Error! Router not found!')
+        })
+        .resolve()
+}
+
+
+module.exports = routes
+},{"./router-controller":48,"navigo":33}],50:[function(require,module,exports){
 const Handlebars = require('handlebars')
 
 class TemplateLoader {
