@@ -18285,8 +18285,21 @@ $(() => { // HEADER Scroll
 $(() => { // CIRCLE
     let angle = 0
 
+    $("#parent .child").on('dragstart', e => {
+        e.preventDefault()
+        angle += 45
+
+        $("#parent").css({
+            transform: 'rotate(' + angle + 'deg)'
+        })
+        $("#parent .child").css({
+            transform: 'rotate(-' + angle + 'deg)'
+        })
+    })
+
     $("#parent .child").on('click', e => {
-        angle += 30
+        e.preventDefault()
+        angle += 45
 
         $("#parent").css({
             transform: 'rotate(' + angle + 'deg)'

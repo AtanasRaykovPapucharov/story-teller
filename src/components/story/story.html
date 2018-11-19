@@ -1,3 +1,11 @@
-<article>
-    {{data.title}}
+<article class="story-current">
+    <div>
+        <img src={{data.image}} alt="IMG" width="30%" height="160px">
+        <span> by {{data.author}}</span>
+        <h1>{{data.title}}</h1>
+        <h2>{{data.subtitle}}</h2>
+    </div>
+    <p>
+        {{data.content}}
+    </p>
 </article>

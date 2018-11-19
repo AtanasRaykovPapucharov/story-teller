@@ -1,76 +1,88 @@
-main {
-    #parent {
-        position: relative;
-        margin: 8% 0 0 8%;
-        width: 300px;
-        height: 300px;
-        border-radius: 50%;
-        background-image: url('./assets/images/plate.png');
+
+@import '../assets/sass-mixin/background-img';
+
+#content-wrapper {
+    .home-wrapper {
+        width: 100%;
+        background-image: url('./assets/images/gram.png');
         background-repeat: no-repeat;
-        background-size: 105% 105%;
+        background-size: 80% 90%;
         background-position: 0px 0px;
-        transform: rotate(0deg);
-        transition: transform 0.7s linear;
-    }
 
-    #child,
-    #child-1,
-    #child-2,
-    #child-3,
-    #child-4,
-    #child-5,
-    #child-6,
-    #child-7 {
-        position: absolute;
-        width: 80px;
-        height: 80px;
-        transform: rotate(0deg);
-        transition: transform 0.7s linear;
-    }
+        #parent {
+            position: relative;
+            margin: 8% 0 0 17%;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background-image: url('./assets/images/plate.png');
+            background-repeat: no-repeat;
+            background-size: 105% 107%;
+            background-position: 0px 0px;
+            transform: rotate(0deg);
+            transition: transform 0.7s linear;
+        }
 
-    #child {
-        top: -30px;
-        left: 110px;
-    }
+        #child,
+        #child-1,
+        #child-2,
+        #child-3,
+        #child-4,
+        #child-5,
+        #child-6,
+        #child-7 {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            transform: rotate(0deg);
+            transition: transform 0.7s linear;
+        }
 
-    #child-1 {
-        top: 100px;
-        left: 255px;
-    }
+        #child {
+            top: -30px;
+            left: 110px;
+        }
 
-    #child-2 {
-        top: 255px;
-        left: 110px;
-    }
+        #child-1 {
+            top: 110px;
+            left: 255px;
+        }
 
-    #child-3 {
-        top: 100px;
-        left: -40px;
-    }
+        #child-2 {
+            top: 250px;
+            left: 110px;
+        }
 
-    #child-4 {
-        top: 10px;
-        left: 15px;
-    }
+        #child-3 {
+            top: 110px;
+            left: -30px;
+        }
 
-    #child-5 {
-        top: 10px;
-        left:210px;
-    }
+        #child-4 {
+            top: 16px;
+            left: 14px;
+        }
 
-    #child-6 {
-        top: 205px;
-        left: 230px;
-    }
+        #child-5 {
+            top: 16px;
+            left: 210px;
+        }
 
-    #child-7 {
-        top: 200px;
-        left: 0px;
-    }
+        #child-6 {
+            top: 204px;
+            left: 216px;
+        }
 
-    #parent .child img {
-        max-width: 100%;
-        border-radius: 50%;
-        z-index: 10;
+        #child-7 {
+            top: 208px;
+            left: -10px;
+        }
+
+        #parent .child img {
+            max-width: 100%;
+            border-radius: 50%;
+            z-index: 10;
+        }
+
     }
 }

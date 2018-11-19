@@ -1,6 +1,7 @@
 @import '../../../node_modules/normalize.scss/normalize.scss';
 @import '../../assets/sass-mixin/flexbox';
 @import '../../assets/sass-mixin/clean-default';
+@import '../../assets/sass-mixin/background-img';
 @import './colors.scss';
 @import './fonts.scss';
 
@@ -20,14 +21,6 @@
 }
 
 // skroller css END
-
-@mixin background($imgpath, $position:0 0, $repeat: no-repeat) {
-    background: {
-        image: url($imgpath);
-        position: $position;
-        repeat: $repeat;
-    }
-}
 
 .parallax {
     background-attachment: fixed;

@@ -29,7 +29,7 @@ function concatCss(inputDir, outputFile) {
         })
         .then((resp) => {
             resp.files.forEach(f => {
-                console.log(f)
+                //console.log(f)
 
                 readFile(inputDir + '/' + f).then(text => {
                     return appendToFile(outputFile, text)
@@ -70,7 +70,7 @@ function appendToFile(fileName, text) {
     return new Promise((resolve, reject) => {
         fs.appendFile(fileName, text, (err) => {
             if (err) reject(err)
-            resolve(console.log('Text appended!'))
+            resolve()
         })
     })
 }
